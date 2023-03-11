@@ -1,0 +1,11 @@
+service: hey
+image: 37s/hey
+servers:
+  -
+registry:
+  username: thtg88
+  password:
+    - MRSK_REGISTRY_PASSWORD
+env:
+  secret:
+    - RAILS_MASTER_KEY
