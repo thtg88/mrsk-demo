@@ -1,11 +1,30 @@
-service: hey
-image: 37s/hey
+service: mrsk-demo
+image: thtg88/mrsk-demo
 servers:
-  -
+  - 159.65.89.220
+  - 159.65.80.138
 registry:
   username: thtg88
   password:
     - MRSK_REGISTRY_PASSWORD
 env:
+  clear:
+    DB_HOST: 159.65.85.77
   secret:
+    - MYSQL_ROOT_PASSWORD
     - RAILS_MASTER_KEY
+
+accessories:
+  db:
+    image: mysql:8.0
+    host: 159.65.85.77
+    port: 3306
+    env:
+      clear:
+        MYSQL_ROOT_HOST: '%'
+      secret:
+        - MYSQL_ROOT_PASSWORD
+      files:
+        - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+      directories:
+        - data:/var/lib/mysql
